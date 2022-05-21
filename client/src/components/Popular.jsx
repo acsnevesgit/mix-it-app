@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from "styled-components";
+import { Link } from 'react-router-dom';
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
 
@@ -7,10 +8,16 @@ const Popular = () => {
   const [popular, setPopular] = useState([]);
 
   const getPopular = async () => {
-    // const api = await fetch(`https://api.spoonacular.com/recipes/random?number=3&apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}`);
-    // const data = await api.json();
-    // setPopular(data.recipes);
-    // console.log(popular);
+    const check = localStorage.getItem("popular");
+
+    if (check) {
+      setPopular(JSON.parse(check));
+    } else {
+      const api = await fetch(`https://api.spoonacular.com/recipes/random?number=4&apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}`);
+      const data = await api.json();
+      localStorage.setItem("popular", JSON.stringify(data.recipes));
+      setPopular(data.recipes);
+    }
   };
 
   useEffect(() => {
@@ -21,6 +28,7 @@ const Popular = () => {
     <div>
       <Wrapper>
         <h3>Popular Choices</h3>
+        {/* similar to a carousel */}
         <Splide options={{
           perPage: 4,
           arrows: false,
@@ -31,10 +39,12 @@ const Popular = () => {
           {popular.map((recipe) => {
             return (
               <SplideSlide key={recipe.id}>
-                <Card>,
-                  <p>{recipe.title}</p>
-                  <img src={recipe.image} alt={recipe.title}></img>
-                  <Gradient />
+                <Card>
+                  <Link to={'/recipe/' + recipe.id}>
+                    <p>{recipe.title}</p>
+                    <img src={recipe.image} alt={recipe.title}></img>
+                    <Gradient />
+                  </Link>
                 </Card>
               </SplideSlide>
             )
@@ -50,7 +60,7 @@ const Wrapper = styled.div`
 `;
 
 const Card = styled.div`
-  height: 25rem;
+  height: 20rem;
   border-radius: 2rem;
   overflow: hidden;
   position: relative;
@@ -88,5 +98,6 @@ const Gradient = styled.div`
   height: 100%,
   width: 100%;
   background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5));
-`
+`;
+
 export default Popular;
