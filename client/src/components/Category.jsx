@@ -23,10 +23,10 @@ const Category = () => {
         <FaPizzaSlice />
         <h4>Italian</h4>
       </SLink>
-      <SLink to={'/cuisine/Japanese'}>
+      {/* <SLink to={'/cuisine/Japanese'}>
         <GiSushis />
         <h4>Japanese</h4>
-      </SLink>
+      </SLink> */}
       <SLink to={'/cuisine/Mediterranean'}>
         <GiFlatfish />
         <h4>Mediterranean</h4>
@@ -35,10 +35,10 @@ const Category = () => {
         <GiDonerKebab />
         <h4>Middle Eastern</h4>
       </SLink>
-      <SLink to={'/cuisine/Mexican'}>
+      {/* <SLink to={'/cuisine/Mexican'}>
         <GiTacos />
         <h4>Mexican</h4>
-      </SLink>
+      </SLink> */}
       <SLink to={'/cuisine/Thai'}>
         <GiNoodles />
         <h4>Thai</h4>
@@ -50,7 +50,7 @@ const Category = () => {
 const List = styled.div`
   display: flex;
   justify-content: center;
-  margin: 2rem 0;
+  margin: 1rem 0;
 `;
 
 const SLink = styled(NavLink)`

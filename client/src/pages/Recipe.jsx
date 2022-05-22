@@ -8,8 +8,9 @@ const Recipe = () => {
   let params = useParams();
 
   const fetchDetails = async () => {
-    const data = await fetch(`https://api.spoonacular.com/recipes/${params.name}/information?apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}`);
+    const data = await fetch(`https://api.spoonacular.com/recipes/${params.name}/information?number=4&apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}`);
     const detailData = await data.json();
+    console.log('detailData:', detailData);
     setDetails(detailData);
   };
 
@@ -24,11 +25,11 @@ const Recipe = () => {
         <img src={details.image} alt='' />
       </div>
       <Info>
-        <Button className={activeTab === "ingredients" ? "active" : ""} onClick={() => setActiveTab("ingredients")}>Ingredients</Button>
         <Button className={activeTab === "instructions" ? "active" : ""} onClick={() => setActiveTab("instructions")}>Instructions</Button>
+        <Button className={activeTab === "ingredients" ? "active" : ""} onClick={() => setActiveTab("ingredients")}>Ingredients</Button>
         {activeTab === "instructions" && (
           <div>
-            <h3 dangerouslySetInnerHTML={{ __html: details.summary }}></h3>
+            <p dangerouslySetInnerHTML={{ __html: details.summary }}></p>
             <h3 dangerouslySetInnerHTML={{ __html: details.instructions }}></h3>
           </div>
         )}
@@ -65,12 +66,18 @@ const DetailWrapper = styled.div`
   ul {
     margin-top: 2rem;
   }
+
+  p {
+    margin-top: 4rem;
+    font-size: 1.2rem;
+    text-align: justify;
+  }
 `;
 
 const Button = styled.button`
   padding: 1rem 2rem;
   color: #313131;
-  background: white:
+  background: white;
   border: 2px solid black;
   margin-right: 2rem;
   font-weight: 600;

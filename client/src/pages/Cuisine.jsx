@@ -24,12 +24,12 @@ const Cuisine = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
-      {cuisine.map((recipe) => {
+      {cuisine.map((item) => {
         return (
-          <Card key={recipe.id}>
-            <Link to={'/recipe/' + recipe.id}>
-              <img src={recipe.image} alt='' />
-              <h4>{recipe.title}</h4>
+          <Card key={item.id}>
+            <Link to={'/recipe/' + item.id}>
+              <img src={item.image} alt='' />
+              <h4>{item.title}</h4>
             </Link>
           </Card>
         );
