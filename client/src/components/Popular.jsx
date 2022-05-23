@@ -14,11 +14,10 @@ const Popular = () => {
     if (check) {
       setPopular(JSON.parse(check));
     } else {
-      const api = await fetch(`https://api.spoonacular.com/recipes/random?number=4&apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}`);
-      const data = await api.json();
-      localStorage.setItem("popular", JSON.stringify(data.recipes));
-      console.log('receitas:', data.recipes);
-      setPopular(data.recipes);
+      const data = await fetch(`https://api.spoonacular.com/recipes/random?number=10&apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}`);
+      const popularData = await data.json();
+      localStorage.setItem("popular", JSON.stringify(popularData.recipes));
+      setPopular(popularData.recipes);
     }
   };
 
@@ -41,7 +40,7 @@ const Popular = () => {
             return (
               <SplideSlide key={recipe.id}>
                 <Card>
-                  <Link to={'/recipe/' + recipe.id}>
+                  <Link to={'/recipes/' + recipe.id}>
                     <p>{recipe.title}</p>
                     <img src={recipe.image} alt={recipe.title}></img>
                     <Gradient />
