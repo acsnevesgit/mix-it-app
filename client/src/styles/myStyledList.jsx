@@ -3,11 +3,11 @@ import { NavLink } from "react-router-dom";
 
 /* eslint-disable no-unused-vars */
 export const Wrapper = styled.div`
-  margin: 4rem 0rem;
+  margin: 3rem 0rem;
 `;
 
 export const Card = styled.div`
-  height: 20rem;
+  height: 18rem;
   border-radius: 2rem;
   overflow: hidden;
   position: relative;
@@ -28,11 +28,11 @@ export const Card = styled.div`
     bottom: 0%;
     transform: translate(-50%, 0%);
     color: white;
-    height: 40%;
+    height: 30%;
     width: 100%;
     text-align: center;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: .9rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -60,9 +60,13 @@ export const Nav = styled.div`
 `;
 
 export const Logo = styled.img`
-  height: 14rem;
-  width: 14rem;
+  height: 10rem;
+  width: 10rem;
   margin-right: 4rem;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 `;
 
 export const ImageInstructions = styled.img`
@@ -86,7 +90,7 @@ export const CardCuisine = styled.div`
   }
 `;
 
-export const DetailWrapper = styled.div`
+export const RecipeWrapper = styled.div`
   margin: 5rem 0;
   display: flex;
   overflow-x: auto;
@@ -97,12 +101,14 @@ export const DetailWrapper = styled.div`
   }
 
   h2 {
+    font-size: 1.6rem;
     margin-bottom: 2rem;
     max-width: fit-content;
   }
 
   h3 {
-    margin-top: 4rem;
+    font-size: 1.2rem;
+    margin-top: 2rem;
   }
 
   li {
@@ -116,12 +122,12 @@ export const DetailWrapper = styled.div`
 
   ul {
     font-size: 1rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
     text-align: justify;
   }
 
   p {
-    margin-top: 2rem;
+    margin-top: 1rem;
     font-size: 1rem;
     line-height: 2.2rem;
     text-align: justify;
@@ -163,7 +169,7 @@ input {
   width: 100%;
   border: none;
   background: linear-gradient(35deg, #494949, #313131);
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: white;
   padding: 1rem 3rem;
   border: none;
@@ -216,7 +222,7 @@ export const LinkCategory = styled(NavLink)`
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  margin-right: 1.5rem;
+  margin-right: 1rem;
   text-decoration: none;
   background: linear-gradient(35deg, #494949, #313131);
   height: 8rem;
@@ -226,7 +232,7 @@ export const LinkCategory = styled(NavLink)`
 
   h4 {
     color: white;
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 
   svg {
@@ -235,9 +241,9 @@ export const LinkCategory = styled(NavLink)`
   }
 
   &:hover {
-    background: linear-gradient(to right bottom, #fd537b, #fc8053, #f8ba47);
+    background: linear-gradient(to right bottom, #868F96, #596164);
     transition: transform 500ms;
-    transform: scale(1);
+    transform: scale(.9);
 
     svg {
       color: white;
@@ -250,7 +256,7 @@ export const LinkCategory = styled(NavLink)`
   }
 
  &.active {
-    background: linear-gradient(to right bottom, #fd537b, #fc8053, #f8ba47);
+    background: linear-gradient(to right bottom, #868F96, #596164);
 
     svg {
       color: white;

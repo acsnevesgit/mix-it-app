@@ -12,7 +12,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  margin: 0% 5%;
+  margin: 0% 6%;
 }
 
 code {
@@ -37,4 +37,11 @@ a {
   color: rgb(56, 56, 56);
   line-height: 2.5rem;
   margin: 2rem 0;
+}
+.splide__arrow--prev {
+  margin-left: -4rem !important;
+}
+
+.splide__arrow--next {
+  margin-right: -4rem !important;
 }

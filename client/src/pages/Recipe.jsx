@@ -1,42 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { ImageInstructions, Info, DetailWrapper, Button } from "../styles/myStyledList";
+import { ImageInstructions, Info, RecipeWrapper, Button } from "../styles/myStyledList";
 
 const Recipe = () => {
   let params = useParams();
   const [activeTab, setActiveTab] = useState("instructions");
-  const [details, setDetails] = useState({});
-  const [ingredientsPics, setIngredientsPics] = useState({});
+  const [recipe, setRecipe] = useState({});
 
-  console.log('activeTab', activeTab);
-  console.log('details', details);
+  console.log('recipe', recipe);
 
-  const getDetails = async (id) => {
-    const data = await fetch(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}`);
-    const detailData = await data.json();
-    console.log('detailData', detailData);
-    setDetails(detailData);
+  // Alternative 1 -> ingredients in bullet list format
+  const getRecipe = async (id) => {
+    const check = localStorage.getItem("recipe");
+
+    if (check) {
+      setRecipe(JSON.parse(check));
+    } else {
+      const data = await fetch(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}`);
+      const recipeData = await data.json();
+      localStorage.setItem("recipe", JSON.stringify(recipeData));
+      setRecipe(recipeData);
+    }
   };
 
-  // const getIngredientsPics = async (id) => {
-  //   const data = await fetch(`https://api.spoonacular.com/recipes/${id}/ingredientWidget?apiKey=${process.env.REACT_APP_SPOONACULAR_API_KEY}`);
-  //   const ingredientsPics = await data.json();
-  //   console.log('ingredientsData', ingredientsPics);
-  //   setIngredientsPics(ingredientsPics);
-  // };
-
   useEffect(() => {
-    getDetails(params.type);
+    getRecipe(params.type);
   }, [params.type]);
 
   return (
     <div>
-
-      <DetailWrapper>
+      <RecipeWrapper>
         <div>
-          <h2>{details.title}</h2>
-          <ImageInstructions src={details.image} alt="details" />
+          <h2>{recipe.title}</h2>
+          <ImageInstructions src={recipe.image} alt="details" />
+          {/* <h3>Dietary Restrictions</h3>
+          <ul>
+            {recipe.diets.map((diet) => (
+              <li key={diet.id}>{diet}</li>
+            ))}
+          </ul> */}
         </div>
         <Info>
           <Button className={activeTab === "instructions" ? "active" : ""} onClick={() => setActiveTab("instructions")}>Instructions</Button>
@@ -44,23 +47,23 @@ const Recipe = () => {
           {activeTab === "instructions" && (
             <div>
               <h3>Summary</h3>
-              <p dangerouslySetInnerHTML={{ __html: details.summary }}></p>
+              <p dangerouslySetInnerHTML={{ __html: recipe.summary }}></p>
               <h3>Step-by-step</h3>
-              <p dangerouslySetInnerHTML={{ __html: details.instructions }}></p>
+              <p dangerouslySetInnerHTML={{ __html: recipe.instructions }}></p>
             </div>
           )}
           {activeTab === "ingredients" && (
             <div>
               <h3>Ingredients</h3>
               <ul>
-                {details.extendedIngredients.map((ingredient) => (
+                {recipe.extendedIngredients.map((ingredient) => (
                   <li key={ingredient.id}>{ingredient.original}</li>
                 ))}
               </ul>
             </div>
           )}
         </Info>
-      </DetailWrapper>
+      </RecipeWrapper>
     </div>
   )
 };

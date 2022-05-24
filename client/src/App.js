@@ -3,7 +3,7 @@ import { BrowserRouter, Link } from 'react-router-dom';
 
 import logo from "../src/assets/Logo2.gif"; // dynamic logo
 // import logo from "../src/assets/Logo.png";  // static logo
-import Category from "./components/Category";
+import Cuisine from "./components/Cuisine";
 import Pages from "./pages/Pages";
 import Search from "./components/Search";
 import { Logo, Nav } from "./styles/myStyledList";
@@ -16,7 +16,7 @@ const App = () => {
           <Link to={"/"}>
             <Logo src={logo} alt="logo" />
           </Link>
-          <Category />
+          <Cuisine />
         </Nav>
         <Search />
         <Pages />
