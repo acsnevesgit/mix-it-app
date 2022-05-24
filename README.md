@@ -15,6 +15,14 @@
 
 <p align="justify">Mix-it-App is a web app for home cooks created with React and using third party API's, mainly <b>spoonacular API</b> - a comprehensive food API that <i>"combines dining out, eating store-bought food, and cooking at home to help you find and organize the restaurants, products, and recipes that fit your diet and can help you reach your nutrition goals."</i>.</p>
 
+<p align="justify">Recipe App frontend inspired on tutorial <i>React Crash Course - Build A Full Recipe App Tutorial</i> --->  https://www.youtube.com/watch?v=xc4uOzlndAk&t=6730s</p/
+
+<br/><div align="center">
+
+![mix-it-app-desktop](https://user-images.githubusercontent.com/94974740/170089627-cf74df86-aab6-4989-9058-58e078aad9cf.png)
+
+</div>
+
 ---
 
 ## 🍳 Features
